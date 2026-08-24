@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Adoção Responsável - Adota Aí{% endblock %}
+
+{% block conteudo %}
+
+<header class="page-header text-center">
+    <div class="container">
+        <h1 class="page-title">❤️ Adoção Responsável</h1>
+        <p class="page-subtitle">
+            Adotar um animal é assumir um compromisso de amor,
+            cuidado e responsabilidade por toda a vida dele.
+        </p>
+    </div>
+</header>
+
+<section class="container mb-5">
+    <div class="row g-4">
+        <div class="col-md-4">
+            <div class="card shadow h-100 border-0">
+                <div class="card-body text-center">
+                    <h1>🍖</h1>
+                    <h4>Alimentação</h4>
+                    <p>Garanta uma alimentação saudável e água limpa diariamente.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card shadow h-100 border-0">
+                <div class="card-body text-center">
+                    <h1>💉</h1>
+                    <h4>Saúde</h4>
+                    <p>Vacinas, consultas veterinárias e vermifugação são essenciais.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card shadow h-100 border-0">
+                <div class="card-body text-center">
+                    <h1>❤️</h1>
+                    <h4>Amor</h4>
+                    <p>Todo animal precisa de carinho, atenção e respeito.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="container mb-5">
+    <div class="card shadow border-0">
+        <div class="card-body p-5">
+            <h2 class="text-center mb-4">📋 Como funciona a adoção?</h2>
+            <div class="row text-center">
+                <div class="col-md-3">
+                    <h1>1️⃣</h1>
+                    <p>Escolha um pet.</p>
+                </div>
+                <div class="col-md-3">
+                    <h1>2️⃣</h1>
+                    <p>Faça seu cadastro.</p>
+                </div>
+                <div class="col-md-3">
+                    <h1>3️⃣</h1>
+                    <p>Preencha o formulário de adoção.</p>
+                </div>
+                <div class="col-md-3">
+                    <h1>4️⃣</h1>
+                    <p>Aguarde nossa análise.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="container mb-5">
+    <div class="alert alert-success text-center">
+        <h3>🐶 Adotar é transformar duas vidas: a do animal e a sua.</h3>
+    </div>
+    <div class="text-center">
+        <a href="{% url 'formulario' %}" class="btn btn-primary-custom btn-lg">
+            ❤️ Quero Adotar Agora
+        </a>
+    </div>
+</section>
+
+{% endblock %}

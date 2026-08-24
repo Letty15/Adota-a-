@@ -1,0 +1,66 @@
+/* Estilização mínima do Django Admin - Adota Aí */
+
+:root {
+    --primary: #198754;       /* verde, igual ao bg-success da navbar do site */
+    --primary-fg: #fff;
+
+    --header-bg: #198754;
+    --header-color: #fff;
+
+    --link-fg: #198754;
+    --link-hover-color: #146c43;
+    --link-selected-fg: #146c43;
+
+    --button-bg: #198754;
+    --button-hover-bg: #146c43;
+    --default-button-bg: #198754;
+    --default-button-hover-bg: #146c43;
+
+    --object-tools-bg: #198754;
+    --object-tools-hover-bg: #146c43;
+}
+
+#header {
+    background: var(--header-bg);
+    color: var(--header-color);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+#branding h1, #branding h1 a:link, #branding h1 a:visited {
+    color: #fff;
+    font-weight: 600;
+}
+
+div.breadcrumbs {
+    background: #146c43;
+    color: #eaffea;
+}
+
+div.breadcrumbs a {
+    color: #eaffea;
+}
+
+.module h2, .module caption, .inline-group h2 {
+    background: var(--primary);
+}
+
+.button, input[type=submit], input[type=button], .submit-row input, a.button {
+    background: var(--primary);
+    border-radius: 6px;
+}
+
+.button:hover, input[type=submit]:hover, input[type=button]:hover {
+    background: var(--primary-fg-hover, #146c43);
+}
+
+.button.default, input[type=submit].default, .submit-row input.default {
+    background: var(--primary);
+}
+
+#changelist-filter {
+    border-radius: 8px;
+}
+
+.dashboard .module table th {
+    width: 100%;
+}

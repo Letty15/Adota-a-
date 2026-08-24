@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Quiz - Adota Aí{% endblock %}
+
+{% block conteudo %}
+
+<div class="container my-5">
+
+    <div class="quiz-container">
+
+        <h1>🐾 Qual pet combina com a sua rotina?</h1>
+
+        <p class="descricao">
+            Responda às perguntas e descubra qual pet combina mais com você!
+        </p>
+
+        <div class="progresso">
+            <div id="barraProgresso"></div>
+        </div>
+
+        <p id="numeroPergunta">Pergunta 1 de 12</p>
+
+        <div id="pergunta"></div>
+
+        <div class="botoes">
+            <button id="btnAnterior" class="btn btn-secondary" onclick="anterior()">
+                ← Anterior
+            </button>
+
+            <button id="btnProxima" class="btn btn-success" onclick="proxima()">
+                Próxima →
+            </button>
+        </div>
+
+    </div>
+
+</div>
+
+<script src="{% static 'js/quiz.js' %}"></script>
+
+{% endblock %}
