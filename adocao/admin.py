@@ -1,6 +1,10 @@
 from django.contrib import admin
 from .models import Pet, SolicitacaoAdocao
 
+admin.site.site_header = "Adota Aí · Painel de Administração"
+admin.site.site_title = "Adota Aí Admin"
+admin.site.index_title = "Bem-vindo(a) ao painel de gestão"
+
 
 @admin.register(Pet)
 class PetAdmin(admin.ModelAdmin):
@@ -27,7 +31,7 @@ class SolicitacaoAdocaoAdmin(admin.ModelAdmin):
 
     list_display = (
         "usuario",
-        "nome_pet",
+        "pet",
         "status",
         "data_solicitacao",
     )
@@ -38,5 +42,5 @@ class SolicitacaoAdocaoAdmin(admin.ModelAdmin):
 
     search_fields = (
         "usuario__username",
-        "nome_pet",
+        "pet__nome",
     )
