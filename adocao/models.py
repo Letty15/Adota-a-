@@ -15,7 +15,13 @@ class SolicitacaoAdocao(models.Model):
         on_delete=models.CASCADE
     )
 
-    nome_pet = models.CharField(max_length=100)
+    pet = models.ForeignKey(
+        'Pet',
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='solicitacoes'
+    )
 
     motivo = models.TextField()
 
@@ -34,7 +40,8 @@ class SolicitacaoAdocao(models.Model):
     )
 
     def __str__(self):
-        return f"{self.usuario.username} - {self.nome_pet}"
+        nome = self.pet.nome if self.pet else "Pet removido"
+        return f"{self.usuario.username} - {nome}"
 
 
 class Pet(models.Model):

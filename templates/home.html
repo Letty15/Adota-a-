@@ -55,62 +55,28 @@
 
         <div class="row g-4">
 
-            <!-- THOR -->
+            {% for pet in pets %}
             <div class="col-6 col-md-3">
                 <div class="pet-card">
-                    <div class="pet-card-img" style="background-image:url('https://images.unsplash.com/photo-1543466835-00a7907e9de1?q=80&w=400&auto=format&fit=crop')"></div>
+                    <div class="pet-card-img" style="background-image:url('{{ pet.foto.url }}')"></div>
                     <div class="pet-card-body">
-                        <h3>Thor</h3>
-                        <p class="pet-meta"><i class="bi bi-calendar3"></i> 2 anos · Médio</p>
-                        <p class="pet-temper">Brincalhão e carinhoso</p>
-                        <a href="#" class="btn btn-primary-custom w-100">Ver perfil</a>
+                        <h3>{{ pet.nome }}</h3>
+                        <p class="pet-meta"><i class="bi bi-calendar3"></i> {{ pet.idade }} · {{ pet.porte }}</p>
+                        <p class="pet-temper">{{ pet.descricao|truncatewords:6 }}</p>
+                        <a href="{% url 'detalhe_pet' pet.id %}" class="btn btn-primary-custom w-100">Ver perfil</a>
                     </div>
                 </div>
             </div>
-
-            <!-- MEL -->
-            <div class="col-6 col-md-3">
-                <div class="pet-card">
-                    <div class="pet-card-img" style="background-image:url('https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?q=80&w=400&auto=format&fit=crop')"></div>
-                    <div class="pet-card-body">
-                        <h3>Mel</h3>
-                        <p class="pet-meta"><i class="bi bi-calendar3"></i> 1 ano · Médio</p>
-                        <p class="pet-temper">Calma e doce</p>
-                        <a href="#" class="btn btn-primary-custom w-100">Ver perfil</a>
-                    </div>
-                </div>
+            {% empty %}
+            <div class="col-12 text-center py-4">
+                <p class="pet-temper">Nenhum pet disponível no momento. Volte em breve! 🐾</p>
             </div>
-
-            <!-- LUNA -->
-            <div class="col-6 col-md-3">
-                <div class="pet-card">
-                    <div class="pet-card-img" style="background-image:url('https://images.unsplash.com/photo-1573865526739-10659fec78a5?q=80&w=400&auto=format&fit=crop')"></div>
-                    <div class="pet-card-body">
-                        <h3>Luna</h3>
-                        <p class="pet-meta"><i class="bi bi-calendar3"></i> 8 meses · Pequeno</p>
-                        <p class="pet-temper">Tímida e amorosa</p>
-                        <a href="#" class="btn btn-primary-custom w-100">Ver perfil</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- NINA -->
-            <div class="col-6 col-md-3">
-                <div class="pet-card">
-                    <div class="pet-card-img" style="background-image:url('https://images.unsplash.com/photo-1519052537078-e6302a4968d4?q=80&w=400&auto=format&fit=crop')"></div>
-                    <div class="pet-card-body">
-                        <h3>Nina</h3>
-                        <p class="pet-meta"><i class="bi bi-calendar3"></i> 6 meses · Pequeno</p>
-                        <p class="pet-temper">Curiosa e brincalhona</p>
-                        <a href="#" class="btn btn-primary-custom w-100">Ver perfil</a>
-                    </div>
-                </div>
-            </div>
+            {% endfor %}
 
         </div>
 
         <div class="text-center mt-4">
-            <a href="#" class="btn btn-outline-custom">Ver todos os animais</a>
+            <a href="{% url 'lista_pets' %}" class="btn btn-outline-custom">Ver todos os animais</a>
         </div>
     </div>
 </section>

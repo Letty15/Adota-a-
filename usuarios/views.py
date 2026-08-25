@@ -5,12 +5,16 @@ from django.contrib.auth.decorators import login_required
 
 from .forms import CadastroUsuarioForm
 from .models import Perfil
+from adocao.models import Pet
 
 def home(request):
 
+    pets = Pet.objects.filter(disponivel=True)[:4]
+
     return render(
         request,
-        'home.html'
+        'home.html',
+        {'pets': pets}
     )
 
 def cadastro_usuario(request):

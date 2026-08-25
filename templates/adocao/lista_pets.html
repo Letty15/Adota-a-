@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Pets disponíveis · Adota Aí{% endblock %}
+
+{% block conteudo %}
+
+<section class="section-pets">
+    <div class="container py-5">
+        <div class="section-heading">
+            <span class="eyebrow-line">
+                <i class="bi bi-paw-fill"></i>
+                Pets disponíveis para adoção
+            </span>
+        </div>
+
+        <div class="row g-4">
+
+            {% for pet in pets %}
+            <div class="col-6 col-md-3">
+                <div class="pet-card">
+                    <div class="pet-card-img" style="background-image:url('{{ pet.foto.url }}')"></div>
+                    <div class="pet-card-body">
+                        <h3>{{ pet.nome }}</h3>
+                        <p class="pet-meta"><i class="bi bi-calendar3"></i> {{ pet.idade }} · {{ pet.porte }}</p>
+                        <p class="pet-temper">{{ pet.descricao|truncatewords:8 }}</p>
+                        <a href="{% url 'detalhe_pet' pet.id %}" class="btn btn-primary-custom w-100">Ver perfil</a>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12 text-center py-5">
+                <p class="pet-temper">Nenhum pet disponível para adoção no momento. Volte em breve! 🐾</p>
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+</section>
+
+{% endblock %}

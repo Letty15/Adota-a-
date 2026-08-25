@@ -1,5 +1,5 @@
 from django import forms
-from .models import SolicitacaoAdocao
+from .models import SolicitacaoAdocao, Pet
 
 
 class SolicitacaoAdocaoForm(forms.ModelForm):
@@ -15,9 +15,8 @@ class SolicitacaoAdocaoForm(forms.ModelForm):
 
         widgets = {
 
-            'nome_pet': forms.TextInput(attrs={
-                'class': 'form-control',
-                'placeholder': 'Nome do pet que deseja adotar'
+            'pet': forms.Select(attrs={
+                'class': 'form-select'
             }),
 
             'motivo': forms.Textarea(attrs={
@@ -41,3 +40,9 @@ class SolicitacaoAdocaoForm(forms.ModelForm):
             ]),
 
         }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # Só mostra pets que ainda estão disponíveis para adoção
+        self.fields['pet'].queryset = Pet.objects.filter(disponivel=True)
+        self.fields['pet'].empty_label = "Selecione um pet"
