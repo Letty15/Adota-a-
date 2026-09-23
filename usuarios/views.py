@@ -5,16 +5,22 @@ from django.contrib.auth.decorators import login_required
 
 from .forms import CadastroUsuarioForm
 from .models import Perfil
-from adocao.models import Pet
+from adocao.models import Pet, SolicitacaoAdocao
 
 def home(request):
 
     pets = Pet.objects.filter(disponivel=True)[:4]
+    total_acolhidos = Pet.objects.count()
+    total_adocoes = SolicitacaoAdocao.objects.filter(status='Aprovado').count()
 
     return render(
         request,
         'home.html',
-        {'pets': pets}
+        {
+            'pets': pets,
+            'total_acolhidos': total_acolhidos,
+            'total_adocoes': total_adocoes,
+        }
     )
 
 def cadastro_usuario(request):
