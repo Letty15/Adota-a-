@@ -36,15 +36,15 @@
 
         <div class="collapse navbar-collapse" id="navMenu">
             <ul class="navbar-nav mx-auto mb-2 mb-lg-0 gap-lg-2">
-                <li class="nav-item"> <a class="nav-link {% if request.resolver_match.url_name == 'home' %}active{% endif %}" href="{% url 'home' %}">Início</a>
-                <li class="nav-item"> <a class="nav-link {% if request.resolver_match.url_name == 'lista_pets' %}active{% endif %}" href="{% url 'lista_pets' %}">Pets disponíveis</a>
-                <li class="nav-item"> <a class="nav-link {% if request.resolver_match.url_name == 'quiz' %}active{% endif %}" href="{% url 'quiz' %}">Compatibilidade</a>
-                <li class="nav-item"> <a class="nav-link {% if request.resolver_match.url_name == 'adocao_responsavel' %}active{% endif %}" href="{% url 'adocao_responsavel' %}">Adoção responsável</a>
-                <li class="nav-item"> <a class="nav-link {% if request.resolver_match.url_name == 'parceiros' %}active{% endif %}" href="{% url 'parceiros' %}">Parceiros</a>
+                <li class="nav-item"> <a class="nav-link {% if request.resolver_match.url_name == 'home' %}active{% endif %}" href="{% url 'home' %}">Início</a></li>
+                <li class="nav-item"> <a class="nav-link {% if request.resolver_match.url_name == 'lista_pets' %}active{% endif %}" href="{% url 'lista_pets' %}">Pets disponíveis</a></li>
+                <li class="nav-item"> <a class="nav-link {% if request.resolver_match.url_name == 'quiz' %}active{% endif %}" href="{% url 'quiz' %}">Compatibilidade</a></li>
+                <li class="nav-item"> <a class="nav-link {% if request.resolver_match.url_name == 'adocao_responsavel' %}active{% endif %}" href="{% url 'adocao_responsavel' %}">Adoção responsável</a></li>
+                <li class="nav-item"> <a class="nav-link {% if request.resolver_match.url_name == 'parceiros' %}active{% endif %}" href="{% url 'parceiros' %}">Parceiros</a></li>
 
             {% if user.is_authenticated %}
             <div class="dropdown">
-                <button class="btn btn-primary-custom dropdown-toggle" data-bs-toggle="dropdown">
+                <button class="btn btn-primary-custom dropdown-toggle" data-bs-toggle="dropdown"> 
                     👤 {{ user.first_name|default:user.username }}
                 </button>
                 <ul class="dropdown-menu dropdown-menu-end">
