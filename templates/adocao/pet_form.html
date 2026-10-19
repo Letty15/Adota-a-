@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% block title %}{{ titulo }} · Adota Aí{% endblock %}
+
+{% block conteudo %}
+<section class="py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-9">
+                <div class="card shadow border-0">
+                    <div class="card-body p-4 p-md-5">
+
+                        <div class="text-center mb-4">
+                            <h1 class="display-6">🐾 {{ titulo }}</h1>
+                            <p class="text-muted">
+                                Todas as características são obrigatórias: é com elas que o quiz e os
+                                filtros encontram o tutor certo para cada pet.
+                            </p>
+                        </div>
+
+                        <form method="post" enctype="multipart/form-data" novalidate>
+                            {% csrf_token %}
+
+                            {% if form.non_field_errors %}
+                            <div class="alert alert-danger">{{ form.non_field_errors }}</div>
+                            {% endif %}
+
+                            <h5 class="mb-3">Informações básicas</h5>
+                            <div class="row">
+                                <div class="col-md-6">{% include 'adocao/_campo.html' with campo=form.nome %}</div>
+                                <div class="col-md-6">{% include 'adocao/_campo.html' with campo=form.idade %}</div>
+                            </div>
+                            {% include 'adocao/_campo.html' with campo=form.descricao %}
+
+                            <div class="mb-3">
+                                <label class="form-label" for="{{ form.foto.id_for_label }}">Foto</label>
+                                {% if pet and pet.foto %}
+                                <div class="mb-2">
+                                    <img src="{{ pet.foto.url }}" alt="{{ pet.nome }}"
+                                         style="height:110px; border-radius:12px; object-fit:cover;">
+                                    <span class="text-muted small ms-2">Foto atual (envie outra só se quiser trocar)</span>
+                                </div>
+                                {% endif %}
+                                {{ form.foto }}
+                                {% for erro in form.foto.errors %}<div class="text-danger small">{{ erro }}</div>{% endfor %}
+                            </div>
+
+                            <hr class="my-4">
+                            <h5 class="mb-3">Características para o match</h5>
+                            <div class="row">
+                                <div class="col-md-6">{% include 'adocao/_campo.html' with campo=form.especie %}</div>
+                                <div class="col-md-6">{% include 'adocao/_campo.html' with campo=form.porte %}</div>
+                                <div class="col-md-6">{% include 'adocao/_campo.html' with campo=form.energia %}</div>
+                                <div class="col-md-6">{% include 'adocao/_campo.html' with campo=form.temperamento %}</div>
+                                <div class="col-md-6">{% include 'adocao/_campo.html' with campo=form.independencia %}</div>
+                                <div class="col-md-6">{% include 'adocao/_campo.html' with campo=form.tolerancia_barulho %}</div>
+                                <div class="col-md-6">{% include 'adocao/_campo.html' with campo=form.experiencia %}</div>
+                                <div class="col-md-6">{% include 'adocao/_campo.html' with campo=form.cuidados %}</div>
+                                <div class="col-md-6">{% include 'adocao/_campo.html' with campo=form.convive_criancas %}</div>
+                                <div class="col-md-6">{% include 'adocao/_campo.html' with campo=form.convive_outros_pets %}</div>
+                            </div>
+
+                            <hr class="my-4">
+                            {% include 'adocao/_campo.html' with campo=form.disponivel %}
+
+                            <div class="d-flex flex-wrap gap-3 justify-content-end mt-4">
+                                <a href="{% if pet %}{% url 'detalhe_pet' pet.pk %}{% else %}{% url 'lista_pets' %}{% endif %}"
+                                   class="btn btn-outline-custom">Cancelar</a>
+                                <button type="submit" class="btn btn-primary-custom">
+                                    <i class="bi bi-check-circle-fill"></i> {% if pet %}Salvar alterações{% else %}Cadastrar pet{% endif %}
+                                </button>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,15 @@
+{# Um campo de formulário com rótulo, ajuda e erros. Uso: include com campo=form.nome #}
+{% if campo.field.widget.input_type == 'checkbox' %}
+<div class="form-check mb-3">
+    {{ campo }}
+    <label class="form-check-label" for="{{ campo.id_for_label }}">{{ campo.label }}</label>
+    {% if campo.help_text %}<div class="form-text">{{ campo.help_text }}</div>{% endif %}
+</div>
+{% else %}
+<div class="mb-3">
+    <label class="form-label" for="{{ campo.id_for_label }}">{{ campo.label|capfirst }}</label>
+    {{ campo }}
+    {% if campo.help_text %}<div class="form-text">{{ campo.help_text }}</div>{% endif %}
+    {% for erro in campo.errors %}<div class="text-danger small">{{ erro }}</div>{% endfor %}
+</div>
+{% endif %}

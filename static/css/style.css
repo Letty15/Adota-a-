@@ -383,3 +383,58 @@ h1, h2, h3 {
 .resultado h1 {
     margin: 20px 0;
 }
+
+/* ===== caracteristicas dos pets, filtros e resultado do quiz ===== */
+.pet-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-bottom: 0.8rem;
+}
+.chip {
+  font-size: 0.72rem;
+  padding: 0.15rem 0.6rem;
+  border-radius: 999px;
+  background: var(--cor-fundo-alt);
+  color: var(--cor-primaria-escura);
+  border: 1px solid rgba(139, 90, 43, 0.2);
+}
+
+.filtro-pets {
+  background: #fff;
+  border-radius: var(--raio);
+  box-shadow: var(--sombra);
+  padding: 1.25rem;
+}
+
+.caracteristicas th {
+  width: 55%;
+  font-weight: 500;
+  color: var(--cor-texto-suave);
+}
+
+.match-pct { display: flex; align-items: baseline; gap: 0.5rem; }
+.match-num {
+  font-family: var(--fonte-titulo);
+  font-size: 1.8rem;
+  color: var(--cor-primaria-escura);
+}
+.match-label { font-size: 0.8rem; color: var(--cor-texto-suave); }
+.match-bar {
+  height: 8px;
+  background: var(--cor-fundo-alt);
+  border-radius: 999px;
+  overflow: hidden;
+}
+.match-bar div {
+  height: 100%;
+  background: var(--cor-primaria);
+  border-radius: 999px;
+}
+
+.admin-box {
+  border: 1px dashed rgba(139, 90, 43, 0.4);
+  border-radius: var(--raio);
+  padding: 0.9rem 1.1rem;
+  background: var(--cor-fundo-alt);
+}

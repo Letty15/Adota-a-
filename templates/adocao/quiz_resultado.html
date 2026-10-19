@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Seu resultado · Adota Aí{% endblock %}
+
+{% block conteudo %}
+
+<section class="section-pets">
+    <div class="container py-5">
+
+        <div class="section-heading">
+            <span class="eyebrow-line">
+                <i class="bi bi-stars"></i>
+                Seus pets mais compatíveis
+            </span>
+            {% if especies_recomendadas %}
+            <p class="pet-temper mt-2">
+                Pelo seu perfil, o que mais combina com você:
+                <strong>{{ especies_recomendadas|join:" ou " }}</strong>.
+            </p>
+            {% endif %}
+            {% if tem_criancas or tem_outros_pets %}
+            <p class="pet-temper small">
+                Mostrando só pets que convivem bem com
+                {% if tem_criancas %}crianças{% endif %}{% if tem_criancas and tem_outros_pets %} e {% endif %}{% if tem_outros_pets %}outros pets{% endif %}.
+            </p>
+            {% endif %}
+        </div>
+
+        <div class="row g-4 justify-content-center">
+            {% for item in melhores %}
+            {% with pet=item.obj %}
+            <div class="col-12 col-md-4">
+                <div class="pet-card">
+                    <div class="pet-card-img" style="background-image:url('{{ pet.foto.url }}')"></div>
+                    <div class="pet-card-body">
+                        <div class="match-pct">
+                            <span class="match-num">{{ item.pct }}%</span>
+                            <span class="match-label">de compatibilidade</span>
+                        </div>
+                        <div class="match-bar"><div style="width: {{ item.pct }}%"></div></div>
+
+                        <h3 class="mt-3">{{ pet.nome }}</h3>
+                        <p class="pet-meta"><i class="bi bi-calendar3"></i> {{ pet.idade }}</p>
+
+                        <div class="pet-chips">
+                            <span class="chip">{{ pet.get_especie_display }}</span>
+                            <span class="chip">{{ pet.get_porte_display }}</span>
+                            <span class="chip">{{ pet.get_energia_display }}</span>
+                            <span class="chip">{{ pet.get_temperamento_display }}</span>
+                        </div>
+
+                        {% if item.combina %}
+                        <p class="pet-temper small mb-2">
+                            <i class="bi bi-check-circle-fill text-success"></i>
+                            Combina em: {{ item.combina|join:", " }}.
+                        </p>
+                        {% endif %}
+
+                        {% if tem_criancas and pet.convive_criancas == 'nt' %}
+                        <p class="small text-warning-emphasis mb-1">
+                            <i class="bi bi-exclamation-triangle-fill"></i> Convivência com crianças ainda não testada.
+                        </p>
+                        {% endif %}
+                        {% if tem_outros_pets and pet.convive_outros_pets == 'nt' %}
+                        <p class="small text-warning-emphasis mb-1">
+                            <i class="bi bi-exclamation-triangle-fill"></i> Convivência com outros pets ainda não testada.
+                        </p>
+                        {% endif %}
+
+                        <a href="{% url 'detalhe_pet' pet.id %}" class="btn btn-primary-custom w-100 mt-2">Conhecer {{ pet.nome }}</a>
+                    </div>
+                </div>
+            </div>
+            {% endwith %}
+            {% empty %}
+            <div class="col-12 text-center py-5">
+                <p class="pet-temper">
+                    {% if total_disponiveis == 0 %}
+                    Não há pets disponíveis no momento. Volte em breve! 🐾
+                    {% else %}
+                    Nenhum pet disponível é compatível com as restrições do seu perfil. 🐾
+                    {% endif %}
+                </p>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="text-center mt-5 d-flex flex-wrap gap-3 justify-content-center">
+            <a href="{% url 'quiz' %}" class="btn btn-outline-custom">Refazer o quiz</a>
+            <a href="{% url 'lista_pets' %}" class="btn btn-primary-custom">Ver todos os pets</a>
+        </div>
+
+    </div>
+</section>
+
+{% endblock %}
