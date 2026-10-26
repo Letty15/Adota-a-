@@ -12,17 +12,8 @@ __pycache__/
 db.sqlite3
 db.sqlite3-journal
 
-<<<<<<< HEAD
 # Mídia enviada pelos usuários: ignora tudo, EXCETO as fotos dos pets,
 # que precisam ir para o GitHub junto com adocao/fixtures/pets.json
-=======
-<<<<<<< HEAD
-# Mídia enviada pelos usuários: ignora tudo, EXCETO as fotos dos pets,
-# que precisam ir para o GitHub junto com adocao/fixtures/pets.json
-=======
-# Arquivos de mídia enviados pelos usuários (fotos dos pets)
->>>>>>> 8219a1b7bf22b267120610c24b8c7e7f9d7d7bb3
->>>>>>> 9346b3cdfffd0dd7d8099d411e3fe8cfe5821847
 media/*
 !media/pets/
 

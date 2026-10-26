@@ -13,26 +13,55 @@
             </span>
         </div>
 
-        <div class="row g-4">
+        {% if user.is_staff %}
+        <div class="d-flex flex-wrap gap-2 justify-content-center mb-4">
+            <a href="{% url 'pet_criar' %}" class="btn btn-primary-custom btn-sm">
+                <i class="bi bi-plus-circle-fill"></i> Cadastrar pet
+            </a>
+            {% if mostrar_todos %}
+            <a href="{% url 'lista_pets' %}" class="btn btn-outline-custom btn-sm">Mostrar só disponíveis</a>
+            {% else %}
+            <a href="{% url 'lista_pets' %}?todos=1" class="btn btn-outline-custom btn-sm">Incluir pets já adotados</a>
+            {% endif %}
+        </div>
+        {% endif %}
 
+        <!-- FILTROS -->
+        <form method="get" class="filtro-pets mb-5">
+            {% if mostrar_todos %}<input type="hidden" name="todos" value="1">{% endif %}
+            <div class="row g-3">
+                {% for campo in filtro %}
+                <div class="col-6 col-md-3">
+                    <label class="form-label small mb-1" for="{{ campo.id_for_label }}">{{ campo.label }}</label>
+                    {{ campo }}
+                </div>
+                {% endfor %}
+            </div>
+            <div class="d-flex gap-2 mt-3 justify-content-end">
+                {% if filtros_ativos %}
+                <a href="{% url 'lista_pets' %}" class="btn btn-outline-custom btn-sm">Limpar filtros</a>
+                {% endif %}
+                <button type="submit" class="btn btn-primary-custom btn-sm">
+                    <i class="bi bi-funnel-fill"></i> Filtrar
+                </button>
+            </div>
+        </form>
+
+        <div class="row g-4">
             {% for pet in pets %}
             <div class="col-6 col-md-3">
-                <div class="pet-card">
-                    <div class="pet-card-img" style="background-image:url('{{ pet.foto.url }}')"></div>
-                    <div class="pet-card-body">
-                        <h3>{{ pet.nome }}</h3>
-                        <p class="pet-meta"><i class="bi bi-calendar3"></i> {{ pet.idade }} · {{ pet.porte }}</p>
-                        <p class="pet-temper">{{ pet.descricao|truncatewords:8 }}</p>
-                        <a href="{% url 'detalhe_pet' pet.id %}" class="btn btn-primary-custom w-100">Ver perfil</a>
-                    </div>
-                </div>
+                {% include 'adocao/_pet_card.html' %}
             </div>
             {% empty %}
             <div class="col-12 text-center py-5">
+                {% if filtros_ativos %}
+                <p class="pet-temper">Nenhum pet bate com esses filtros. Tente afrouxar alguma característica ou
+                    <a href="{% url 'quiz' %}">faça o quiz de compatibilidade</a>. 🐾</p>
+                {% else %}
                 <p class="pet-temper">Nenhum pet disponível para adoção no momento. Volte em breve! 🐾</p>
+                {% endif %}
             </div>
             {% endfor %}
-
         </div>
     </div>
 </section>

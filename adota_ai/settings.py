@@ -31,7 +31,21 @@ SECRET_KEY = os.environ.get(
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DJANGO_DEBUG', 'True') == 'True'
 
-ALLOWED_HOSTS = os.environ.get('DJANGO_ALLOWED_HOSTS', '').split(',') if os.environ.get('DJANGO_ALLOWED_HOSTS') else []
+# Em produção: DJANGO_ALLOWED_HOSTS="seuusuario.pythonanywhere.com"
+# (vários hosts separados por vírgula). Veja DEPLOY.md.
+ALLOWED_HOSTS = [
+    h.strip()
+    for h in os.environ.get('DJANGO_ALLOWED_HOSTS', '').split(',')
+    if h.strip()
+]
+
+# Necessário para formulários (POST) funcionarem em https no servidor.
+# Ex.: DJANGO_CSRF_TRUSTED_ORIGINS="https://seuusuario.pythonanywhere.com"
+CSRF_TRUSTED_ORIGINS = [
+    o.strip()
+    for o in os.environ.get('DJANGO_CSRF_TRUSTED_ORIGINS', '').split(',')
+    if o.strip()
+]
 
 
 # Application definition
@@ -111,9 +125,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/6.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'pt-br'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Bahia'
 
 USE_I18N = True
 
@@ -129,14 +143,22 @@ STATICFILES_DIRS = [
     BASE_DIR / 'static',
 ]
 
+# Pasta para onde o `collectstatic` copia todos os arquivos estáticos
+# (CSS/JS/imagens do site e do admin). No PythonAnywhere ela é servida
+# pela aba Web > Static files, não pelo Django.
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
 MEDIA_URL = '/media/'
 
 MEDIA_ROOT = BASE_DIR / 'media'
-STATIC_ROOT = BASE_DIR / 'staticfiles'
 
-CSRF_TRUSTED_ORIGINS = [
-    o for o in os.environ.get('DJANGO_CSRF_TRUSTED_ORIGINS', '').split(',') if o
-]
-
+LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'perfil'
 LOGOUT_REDIRECT_URL = 'login'
+
+
+# Faz as mensagens do Django usarem as classes de alerta do Bootstrap
+from django.contrib.messages import constants as message_constants
+MESSAGE_TAGS = {
+    message_constants.ERROR: 'danger',
+}
