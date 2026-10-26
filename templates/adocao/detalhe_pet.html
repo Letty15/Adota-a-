@@ -22,29 +22,13 @@
 
                 <h1 class="hero-title">{{ pet.nome }}</h1>
 
-                <p class="pet-meta"><i class="bi bi-calendar3"></i> {{ pet.idade }}</p>
+                <p class="pet-meta"><i class="bi bi-calendar3"></i> {{ pet.idade }} · {{ pet.porte }}</p>
 
                 <p class="hero-text">{{ pet.descricao }}</p>
 
-                <h5 class="mt-4">Características</h5>
-                <table class="table table-sm caracteristicas">
-                    <tbody>
-                        <tr><th>Espécie</th><td>{{ pet.get_especie_display }}</td></tr>
-                        <tr><th>Porte</th><td>{{ pet.get_porte_display }}</td></tr>
-                        <tr><th>Energia</th><td>{{ pet.get_energia_display }}</td></tr>
-                        <tr><th>Temperamento</th><td>{{ pet.get_temperamento_display }}</td></tr>
-                        <tr><th>Independência</th><td>{{ pet.get_independencia_display }}</td></tr>
-                        <tr><th>Tolerância a barulho</th><td>{{ pet.get_tolerancia_barulho_display }}</td></tr>
-                        <tr><th>Experiência exigida</th><td>{{ pet.get_experiencia_display }}</td></tr>
-                        <tr><th>Cuidados especiais</th><td>{{ pet.get_cuidados_display }}</td></tr>
-                        <tr><th>Convive com crianças</th><td>{{ pet.get_convive_criancas_display }}</td></tr>
-                        <tr><th>Convive com outros pets</th><td>{{ pet.get_convive_outros_pets_display }}</td></tr>
-                    </tbody>
-                </table>
-
                 {% if pet.disponivel %}
                 <div class="d-flex flex-wrap gap-3 mt-4">
-                    <a href="{% url 'formulario' %}?pet={{ pet.pk }}" class="btn btn-primary-custom btn-lg">
+                    <a href="{% url 'formulario' %}" class="btn btn-primary-custom btn-lg">
                         <i class="bi bi-heart-fill"></i> Quero adotar {{ pet.nome }}
                     </a>
                     <a href="{% url 'lista_pets' %}" class="btn btn-outline-custom btn-lg">
@@ -56,24 +40,6 @@
                     <a href="{% url 'lista_pets' %}" class="btn btn-outline-custom btn-lg">
                         Ver pets disponíveis
                     </a>
-                </div>
-                {% endif %}
-
-                {% if user.is_staff %}
-                <div class="admin-box mt-4">
-                    <strong><i class="bi bi-shield-lock-fill"></i> Administração</strong>
-                    <div class="d-flex flex-wrap gap-2 mt-2">
-                        <a href="{% url 'pet_editar' pet.pk %}" class="btn btn-outline-custom btn-sm">
-                            <i class="bi bi-pencil-fill"></i> Editar
-                        </a>
-                        <form method="post" action="{% url 'pet_excluir' pet.pk %}"
-                              onsubmit="return confirm('Excluir {{ pet.nome|escapejs }} definitivamente?');">
-                            {% csrf_token %}
-                            <button type="submit" class="btn btn-outline-danger btn-sm">
-                                <i class="bi bi-trash-fill"></i> Excluir
-                            </button>
-                        </form>
-                    </div>
                 </div>
                 {% endif %}
             </div>
