@@ -27,13 +27,15 @@ pip install -r requirements.txt
 ```
 
 ## 3. Banco e administrador
-O `db.sqlite3` e a pasta `media/` não vão no Git (estão no `.gitignore`),
-então no servidor o banco começa vazio:
+O `db.sqlite3` não vai no Git (está no `.gitignore`), então no servidor o banco
+começa vazio. As fotos dos pets (`media/pets/`) e os dados iniciais dos pets
+(`adocao/fixtures/pets.json`) vão no Git e são carregados no passo abaixo:
 
 ```bash
 python manage.py migrate
 python manage.py createsuperuser
 python manage.py collectstatic
+python manage.py loaddata pets
 ```
 
 `collectstatic` cria a pasta `staticfiles/`.
@@ -98,6 +100,9 @@ pip install -r requirements.txt
 python manage.py migrate
 python manage.py collectstatic --noinput
 ```
+Se você cadastrou novos pets e quer levá-los ao GitHub, veja a seção
+**Levando novos pets para o GitHub** abaixo.
+
 E clique em **Reload** na aba Web.
 
 ## Problemas comuns
@@ -107,3 +112,15 @@ E clique em **Reload** na aba Web.
 - **`403 CSRF` ao enviar formulário:** confira `DJANGO_CSRF_TRUSTED_ORIGINS`
   (com `https://`).
 - **Qualquer erro 500:** veja a aba **Web > Error log**.
+
+## Levando novos pets para o GitHub
+Fotos enviadas pelo formulário ficam em `media/pets/` (não em `static/`, que é
+só para logo, CSS e JS). Depois de cadastrar pets na sua máquina:
+
+```bash
+python manage.py dumpdata adocao.Pet --indent 2 -o adocao/fixtures/pets.json
+git add media/pets adocao/fixtures/pets.json
+git commit -m "Atualiza pets"
+git push
+```
+No servidor: `git pull` e `python manage.py loaddata pets`.
