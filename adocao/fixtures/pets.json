@@ -1,0 +1,107 @@
+[
+  {
+    "model": "adocao.pet",
+    "pk": 1,
+    "fields": {
+      "nome": "Elo",
+      "idade": "4",
+      "descricao": "Uma cachorrinha bem pequenininha",
+      "foto": "pets/images.webp",
+      "disponivel": true,
+      "especie": "cao",
+      "porte": 2,
+      "energia": 2,
+      "temperamento": 2,
+      "independencia": 2,
+      "tolerancia_barulho": 2,
+      "experiencia": 2,
+      "cuidados": 2,
+      "convive_criancas": "nt",
+      "convive_outros_pets": "nt"
+    }
+  },
+  {
+    "model": "adocao.pet",
+    "pk": 2,
+    "fields": {
+      "nome": "Tales",
+      "idade": "1 ano",
+      "descricao": "Gata tricolor, possui nome masculino porque quando pequena acharam que era um macho e a nomearam desse jeito.",
+      "foto": "pets/gato2.jpeg",
+      "disponivel": true,
+      "especie": "gato",
+      "porte": 1,
+      "energia": 1,
+      "temperamento": 2,
+      "independencia": 3,
+      "tolerancia_barulho": 1,
+      "experiencia": 1,
+      "cuidados": 1,
+      "convive_criancas": "nt",
+      "convive_outros_pets": "nt"
+    }
+  },
+  {
+    "model": "adocao.pet",
+    "pk": 3,
+    "fields": {
+      "nome": "Pitolomeu",
+      "idade": "2 anos",
+      "descricao": "Apesar de ter 2 anos é uma gato extremamente pequeno.",
+      "foto": "pets/gato1.jpeg",
+      "disponivel": true,
+      "especie": "gato",
+      "porte": 1,
+      "energia": 1,
+      "temperamento": 3,
+      "independencia": 2,
+      "tolerancia_barulho": 1,
+      "experiencia": 1,
+      "cuidados": 1,
+      "convive_criancas": "sim",
+      "convive_outros_pets": "sim"
+    }
+  },
+  {
+    "model": "adocao.pet",
+    "pk": 4,
+    "fields": {
+      "nome": "Dogson",
+      "idade": "4 anos",
+      "descricao": "Extremamente carinhoso e carente. Costuma ser maltratado por outros animais, evitar deixa-lo perto de animais mais agressivos.",
+      "foto": "pets/cachorro2.jpeg",
+      "disponivel": true,
+      "especie": "cao",
+      "porte": 2,
+      "energia": 3,
+      "temperamento": 3,
+      "independencia": 2,
+      "tolerancia_barulho": 3,
+      "experiencia": 2,
+      "cuidados": 1,
+      "convive_criancas": "sim",
+      "convive_outros_pets": "nao"
+    }
+  },
+  {
+    "model": "adocao.pet",
+    "pk": 5,
+    "fields": {
+      "nome": "A gata (Agata)",
+      "idade": "3 anos",
+      "descricao": "Bastante hostil mas se torna \"simpatica\" ao ganhar confiança com o tutor",
+      "foto": "pets/gata3.jpeg",
+      "disponivel": true,
+      "especie": "gato",
+      "porte": 1,
+      "energia": 2,
+      "temperamento": 1,
+      "independencia": 3,
+      "tolerancia_barulho": 1,
+      "experiencia": 2,
+      "cuidados": 1,
+      "convive_criancas": "nao",
+      "convive_outros_pets": "nao"
+    }
+  }
+]
